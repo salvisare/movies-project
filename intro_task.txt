@@ -1,0 +1,25 @@
+Overview
+
+In the previous step, you have created a simple movie application that had a CLI (Command Line Interface) with two basic types of commands:
+CRUD: Create, Read, Update, Delete.
+
+Analytics: Top-rated movies, least-rated movies etc.
+We now extend our project to integrate everything you learned so far.
+
+------------------------------------------------------------------------------------
+
+Features
+
+Here are the new exciting features at this part!
+
+1. Changing The Data Structure
+In the last part, you had a simple dictionary that stored the movie title and rating. In this part, you’ll implement a more complex data structure that can hold more data per movie, for example, the year of the movie.
+
+2. Persistent Storage
+Currently, all of your application’s data is stored in-memory. As you probably noticed, when you close the application, your changes are not saved. For example, if you added a movie, it is not saved.
+
+3. Application robustness
+Making sure that unpredicted user input cannot break the application. Improving user experience - if an invalid input was given, ask the user for the input again.
+
+4. Step-by-step
+Don’t worry, as always - we will complete all the steps gradually, step by steps. By the end of this exercise, you’ll have a magnificent application!
