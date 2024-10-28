@@ -21,7 +21,7 @@ def get_movies():
     }
     """
     """Loads movie data from the JSON file and returns it as a dictionary."""
-    with open("movies_data.json", "r") as file:
+    with open("../static/movies_data.json", "r") as file:
         return json.load(file)
 
 
@@ -29,7 +29,7 @@ def save_movies(movies):
     """
     Gets all your movies as an argument and saves them to the JSON file.
     """
-    with open("movies_data.json", "w") as file:
+    with open("../static/movies_data.json", "w") as file:
         json.dump(movies, file, indent=4)
 
 

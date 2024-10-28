@@ -48,7 +48,7 @@ class StorageJson(IStorage):
         else:
             print(f"Movie '{title}' does not exist in the database.")
 
-    def update_movie(self, title, rating, year):
+    def update_movie(self, title, rating, year, poster):
         """Update the rating or year of a movie."""
         movies = self._load_movies()
         if title in movies:

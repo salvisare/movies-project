@@ -1,7 +1,6 @@
 import sys
 import random
-import movie_storage
-
+from non_oop_files import movie_storage
 
 MIN_RATING = 0
 MAX_RATING = 10

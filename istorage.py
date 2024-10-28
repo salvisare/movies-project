@@ -19,6 +19,6 @@ class IStorage(ABC):
         pass
 
     @abstractmethod
-    def update_movie(self, title, rating):
+    def update_movie(self, title, rating, year, poster):
         """"Update a movie's rating or year in storage by title."""
         pass

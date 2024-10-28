@@ -42,5 +42,20 @@
     "ttt": {
         "rating": 3.3,
         "year": 2020
+    },
+    "eee": {
+        "rating": 0.1,
+        "year": 2023,
+        "poster": "https://www.e.jpg"
+    },
+    "mmm": {
+        "rating": 7.0,
+        "year": 1998,
+        "poster": "https://www.lll.jpg"
+    },
+    "qwe": {
+        "rating": 9.1,
+        "year": 2000,
+        "poster": "https://www.eee.de/abc.jpg"
     }
 }
