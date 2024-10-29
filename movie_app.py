@@ -1,12 +1,14 @@
 import random
 import sys
+from omdb_api import get_movie_details
 
 
 class MovieApp:
     """Main class for the movie application to handle menu, commands, and logic."""
-    def __init__(self, storage):
+    def __init__(self, storage, api_key):
         """Initialize the movie app with a storage instance."""
         self._storage = storage
+        self.api_key = api_key
 
 
     def _command_list_movies(self):
@@ -57,41 +59,24 @@ class MovieApp:
 
 
     def _command_add_movie(self):
-        """Add a new movie to the database."""
-        title = input("Enter movie title: ")
-        while title == "":
-            title = input("Enter a valid movie name: ")
+        """Add a new movie by title and fetch details from OMDb API."""
+        title = input("Enter movie title: ").strip()
 
-        rating = float(input("Enter movie rating (0.0-10.0): "))
-        valid_rating = False
-        while not valid_rating:
-            try:
-                rating = float(rating)
-                if 0.0 <= rating <= 10.0:
-                    valid_rating = True
-                else:
-                    rating = input("Rating must be between 0.0 and 10.0. Try again: ")
-            except ValueError:
-                rating = input("Enter a valid movie rating (0.0-10.0): ")
+        # Fetch movie data using OMDb API
+        movie_data = get_movie_details(title, self.api_key)
 
-        year = input("Enter release year: ")
-        # Check if the year is valid
-        while not year.isdigit() or int(year) < 1900:
-            year = input("Invalid input. Enter a valid year (1900 or later): ")
+        if movie_data:
+            # Retrieve relevant details
+            title = movie_data.get('Title')
+            rating = float(movie_data.get('imdbRating', 0))
+            year = int(movie_data.get('Year', 0))
+            poster = movie_data.get('Poster', '')
 
-        # Convert to integer after validation
-        year = int(year)
-
-        valid_extensions = ['.jpg', '.jpeg', '.png', '.gif']
-        poster = input("Enter URL for movie poster: ")
-        while not (poster.startswith('http://') or poster.startswith('https://')) or \
-                not any(poster.endswith(ext) for ext in valid_extensions):
-            print(
-                "Invalid URL. Enter a valid URL starting with http:// or https:// & end with .jpg, .jpeg, .png, or .gif")
-            poster = input("Enter URL for movie poster: ")
-
-        self._storage.add_movie(title, rating, year, poster)
-        print(f"Movie '{title}' added successfully.")
+            # Save movie details in storage
+            self._storage.add_movie(title, rating, year, poster)
+            print(f"Movie '{title}' added successfully!")
+        else:
+            print(f"Could not add movie: '{title}'. It may not be found in the OMDb database or there was an API issue.")
 
         self.back_to_main_menu()
 

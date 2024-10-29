@@ -1,11 +1,12 @@
 from storage_json import StorageJson
 from storage_csv import StorageCsv
 from movie_app import MovieApp
+from omdb_api import get_movie_details
 
 def main():
-    #storage = StorageJson('static/movies_data.json')  # Create a StorageJson instance
+    api_key = "23cc239c"
     storage = StorageCsv('static/movies_data.csv')  # Use CSV storage
-    app = MovieApp(storage)                    # Pass it to MovieApp
+    app = MovieApp(storage, api_key)    # Pass it to MovieApp
     app.run()                                  # Run the app
 
 if __name__ == "__main__":
