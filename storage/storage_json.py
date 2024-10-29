@@ -1,12 +1,12 @@
 import json
-from istorage import IStorage
+from storage.istorage import IStorage
 
 
 class StorageJson(IStorage):
     """Storage class for managing movies in a JSON file."""
 
     def __init__(self, file_path):
-        """Initialize the storage with the file path for the JSON data."""
+        """Initialize the data with the file path for the JSON data."""
         self.file_path = file_path
 
     def _load_movies(self):
@@ -27,7 +27,7 @@ class StorageJson(IStorage):
         return self._load_movies()
 
     def add_movie(self, title, rating, year, poster):
-        """Add a new movie to the JSON storage."""
+        """Add a new movie to the JSON data."""
         movies = self._load_movies()
         if title in movies:
             print(f"Movie '{title}' already exists.")
@@ -40,7 +40,7 @@ class StorageJson(IStorage):
         self._save_movies(movies)
 
     def delete_movie(self, title):
-        """Delete a movie from JSON storage by its title."""
+        """Delete a movie from JSON data by its title."""
         movies = self._load_movies()
         if title in movies:
             del movies[title]

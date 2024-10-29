@@ -1,15 +1,11 @@
 import csv
-from istorage import IStorage
-
-
-import csv
-from istorage import IStorage
+from storage.istorage import IStorage
 
 class StorageCsv(IStorage):
     """Storage class for managing movies in a CSV file format."""
 
     def __init__(self, file_path):
-        """Initialize the storage with the file path for the CSV data."""
+        """Initialize the data with the file path for the CSV data."""
         self.file_path = file_path
 
 
@@ -77,7 +73,7 @@ class StorageCsv(IStorage):
         return self._load_movies()
 
     def add_movie(self, title, rating, year, poster):
-        """Add a new movie to the CSV storage."""
+        """Add a new movie to the CSV data."""
         movies = self._load_movies()
         if title in movies:
             print(f"Movie '{title}' already exists.")
@@ -90,7 +86,7 @@ class StorageCsv(IStorage):
         self._save_movies(movies)
 
     def delete_movie(self, title):
-        """Delete a movie from the CSV storage by its title."""
+        """Delete a movie from the CSV data by its title."""
         movies = self._load_movies()
         if title in movies:
             del movies[title]
@@ -100,7 +96,7 @@ class StorageCsv(IStorage):
             print(f"Movie '{title}' does not exist in the database.")
 
     def update_movie(self, title, rating, year, poster):
-        """Update the rating or year of a movie in CSV storage."""
+        """Update the rating or year of a movie in CSV data."""
         movies = self._load_movies()
         if title in movies:
             movies[title]["rating"] = rating

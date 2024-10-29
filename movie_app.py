@@ -6,7 +6,7 @@ from omdb_api import get_movie_details
 class MovieApp:
     """Main class for the movie application to handle menu, commands, and logic."""
     def __init__(self, storage, api_key):
-        """Initialize the movie app with a storage instance."""
+        """Initialize the movie app with a data instance."""
         self._storage = storage
         self.api_key = api_key
 
@@ -72,7 +72,7 @@ class MovieApp:
             year = int(movie_data.get('Year', 0))
             poster = movie_data.get('Poster', '')
 
-            # Save movie details in storage
+            # Save movie details in data
             self._storage.add_movie(title, rating, year, poster)
             print(f"Movie '{title}' added successfully!")
         else:
