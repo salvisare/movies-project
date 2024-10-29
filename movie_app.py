@@ -224,18 +224,24 @@ class MovieApp:
     def _command_generate_website(self):
         """Generate a static website showcasing the movies."""
         movies = self._storage.list_movies()
-        html_content = "<html><head><title>The Ultimate Movie Collection</title></head><body>"
-        html_content += "<h1>The Ultimate Movie Collection</h1><ul>"
+        html_content = "<html>\n<head>\n<title>The Ultimate Movie Collection</title>\n<link rel='stylesheet' href='style.css'/>\n</head>\n<body>"
+        html_content += "<div class='list-movies-title'>\n<h1>The Ultimate Movie Collection</h1>\n</div>\n<div>\n<ol class='movie-grid'>\n"
         for title, details in movies.items():
             html_content += (
-                f"<li><strong>{title}</strong> - Rating: {details['rating']} - "
-                f"Year: {details['year']}<br><img src='{details.get('poster', '')}' width='100'></li>"
+                f"<li>\n"
+                f"<div class='movie'>\n"
+                f"<img class='movie-poster' src='{details.get('poster', '')}'/>\n"
+                f"<div class='movie-title'>{title}</div>\n"
+                f"<div class='movie-year'>{details['year']}</div>\n"
+                f"</div>\n"
+                f"</li>\n"
             )
-        html_content += "</ul></body></html>"
+        html_content += "</ol>\n</div>\n</body>\n</html>"
 
         with open("static/movies.html", "w") as f:
             f.write(html_content)
-        print("Website generated as 'movies.html' within the 'static' directory.")
+        # print("Website generated as 'movies.html' within the 'static' directory.")
+        print("Website was generated successfully.")
 
         self.back_to_main_menu()
 
